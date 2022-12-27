@@ -1,0 +1,25 @@
+<div class="card border">
+  <div class="row g-0">
+    <div class="col-3 d-none d-md-block border-end">
+      <div class="card-body">
+        <h4 class="subheader">General</h4>
+        <div class="list-group list-group-transparent flex-column nav nav-role-settings" id="role-settings-tab" role="tablist" aria-orientation="vertical">
+          <%= link_to edit_space_path(@space), class: "list-group-item list-group-item-action d-flex align-items-center nav-link", id: "space-details-tab", type: "button", role:"tab", aria: { controls: "space-details", selected: "false" } do %>
+            Details
+            <small class="text-muted ms-auto">6</small>
+          <% end %>
+          <%= link_to space_roles_path(@space), class: "list-group-item list-group-item-action d-flex align-items-center nav-link active", id: "space-roles-tab", type: "button", role:"tab", aria: { controls: "space-roles", selected: "true" } do %>
+            Roles
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col d-flex flex-column">
+      <div class="card-body tab-content" id="role-settings-tabContent">
+        <div class="tab-pane show active" id="role-details" role="tabpanel" aria-labelledby="role-details-tab" tabindex="0">
+          <%= render "details", role: @role %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

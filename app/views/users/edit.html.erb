@@ -1,0 +1,7 @@
+<% content_for :page_pretitle do %>
+  User / settings
+<% end %>
+<% content_for :page_title do %>
+  <%= @user.name %>
+<% end %>
+<%= render "form", user: @user %>

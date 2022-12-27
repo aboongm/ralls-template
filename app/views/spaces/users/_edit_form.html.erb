@@ -1,0 +1,47 @@
+<div class="card border">
+  <div class="row g-0">
+    <div class="col-3 d-none d-md-block border-end">
+      <div class="card-body">
+        <h4 class="subheader">General</h4>
+        <div class="list-group list-group-transparent flex-column nav nav-user-settings" id="user-settings-tab" role="tablist" aria-orientation="vertical">
+          <button class="list-group-item list-group-item-action d-flex align-items-center nav-link active"
+					id="user-role-tab" data-bs-toggle="tab" data-bs-target="#user-role" type="button" role="tab" aria-controls="user-role" aria-selected="true">
+            Role
+            <small class="text-muted ms-auto">1</small>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col d-flex flex-column">
+      <div class="card-body tab-content" id="user-settings-tabContent">
+        <div class="tab-pane show active" id="user-role" role="tabpanel" aria-labelledby="user-role-tab" tabindex="0">
+          <h2 class="mb-4">User role</h2>
+          <%= form_with(model: @user_role, url: space_user_url(@space, @user), method: :patch) do |form| %>
+            <% if @user_role.errors.any? %>
+              <div style="color: red">
+                <h2><%= pluralize(@user_role.errors.count, "error") %> prohibited this user role from being saved:</h2>
+                <ul>
+                  <% @user_role.errors.each do |error| %>
+                    <li><%= error.full_message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+            <div class="form-group mb-3 row">
+              <%= form.label :role, class: "form-label col-3 col-form-label" %>
+              <div class="col">
+                <%= form.select :role_id, @space_roles.map { |role| [role.name, role.id] }, {}, { class:"form-control", ariaDescribedby:"roleHelp" } %>
+              </div>
+            </div>
+            <div class="form-footer">
+              <%= form.submit "Save", class:"btn btn-primary" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--
+  <%= button_to "Delete", @user, method: :delete, form: { data: { turbo_confirm: "Are you sure?" } }, class: "btn btn-danger" %>
+-->

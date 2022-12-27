@@ -1,0 +1,40 @@
+<h2 class="mb-4">Role</h2>
+<%= form_with model: [@space, role.becomes(Role)] do |form| %>
+  <% form.object = role.becomes(role.class) %>
+  <% if role.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(role.errors.count, "error") %> prohibited this role from being saved:</h2>
+      <ul>
+        <% role.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group mb-3 row">
+    <%= form.label :name, class: "form-label col-3 col-form-label" %>
+    <div class="col-3">
+      <%= form.text_field :name, class:"form-control", ariaDescribedby:"NameHelp", placeholder: "Enter name" %>
+    </div>
+  </div>
+  <div class="form-group mb-3 row">
+    <%= form.label :value, class: "form-label col-3 col-form-label" %>
+    <div class="col-3">
+      <%= form.text_field :value, class:"form-control", ariaDescribedby:"valueHelp", placeholder: "Enter value", disabled: role.persisted? %>
+    </div>
+  </div>
+  <div class="mb-3">
+    <div class="form-label col-3 col-form-label">Permissions</div>
+    <div>
+      <% Role::AVAILABLE_PERMISSIONS.each do |permission| %>
+        <label class="form-check">
+          <%= form.check_box "permissions[#{permission}]", { class: 'form-check-input', checked: has?(permission) }, "true", "false" %>
+          <span class="form-check-label"> <%= permission %> </span>
+        </label>
+      <% end %>
+    </div>
+  </div>
+  <div class="form-footer">
+    <%= form.submit "Save", class:"btn btn-primary" %>
+  </div>
+<% end %>

@@ -1,0 +1,53 @@
+<body class="<%= interface_mode %>">
+  <div class="page">
+    <aside class="navbar navbar-vertical navbar-expand-lg navbar-dark">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <h1 class="navbar-brand navbar-brand-autodark">
+          <a href="/">
+            <%= image_tag "logo.svg", width: "110", height: "32", alt: "Portal", class: "navbar-brand-image" %>
+          </a>
+        </h1>
+        <div class="navbar-nav flex-row d-lg-none">
+          <%= render 'common/profile_dropdown' %>
+        </div>
+        <!-- Navbar -->
+        <div class="collapse navbar-collapse" id="navbar-menu">
+          <%= render 'common/nav_items' %>
+          <div class="my-md-0 flex-grow-1 flex-md-grow-0 order-first order-md-first">
+            <%= render 'common/space_selector' %>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <div class="page-wrapper">
+      <div class="container-xl">
+        <div class="flex-row mb-4">
+          <!-- Page title -->
+          <div class="page-header d-print-none">
+            <div class="row align-items-center">
+              <%= render 'common/section_title' %>
+              <div class="d-none d-lg-flex col flex-row-reverse">
+                <%= render 'common/profile_dropdown' %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% if notice %>
+          <p class="alert alert-success alert-dismissible"><%= notice %></p>
+        <% end %>
+        <% if alert %>
+          <p class="alert alert-danger alert-dismissible"><%= alert %></p>
+        <% end %>
+      </div>
+      <div class="page-body">
+        <div class="container-xl">
+          <%= yield %>
+        </div>
+      </div>
+      <%= render 'common/footer' %>
+    </div>
+  </div>
+</body>

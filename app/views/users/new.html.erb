@@ -1,0 +1,9 @@
+<% content_for :page_pretitle do %>
+  New
+<% end %>
+<% content_for :page_title do %>
+  User
+<% end %>
+<div class="row row-cards">
+  <%= render "form", user: @user %>
+</div>

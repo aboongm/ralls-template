@@ -1,0 +1,34 @@
+<div class="card border">
+  <div class="row g-0">
+    <div class="col-3 d-none d-md-block border-end">
+      <div class="card-body">
+        <h4 class="subheader">General</h4>
+        <div class="list-group list-group-transparent flex-column nav nav-user-settings" id="user-settings-tab" role="tablist" aria-orientation="vertical">
+          <button class="list-group-item list-group-item-action d-flex align-items-center nav-link active"
+					id="user-details-tab" data-bs-toggle="tab" data-bs-target="#user-details" type="button" role="tab" aria-controls="user-details" aria-selected="true">
+            Details
+            <small class="text-muted ms-auto">5</small>
+          </button>
+          <button class="list-group-item list-group-item-action d-flex align-items-center nav-link"
+					id="user-appearance-tab" data-bs-toggle="tab" data-bs-target="#user-appearance" type="button" role="tab" aria-controls="user-appearance" aria-selected="false">
+            Appearance
+            <small class="text-muted ms-auto">3</small>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col d-flex flex-column">
+      <div class="card-body tab-content" id="user-settings-tabContent">
+        <div class="tab-pane show active" id="user-details" role="tabpanel" aria-labelledby="user-details-tab" tabindex="0">
+          <%= render "details", user: @user %>
+        </div>
+        <div class="tab-pane" id="user-appearance" role="tabpanel" aria-labelledby="user-appearance-tab" tabindex="0">
+          <%= render "appearance", user: @user %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--
+  <%= button_to "Delete", @user, method: :delete, form: { data: { turbo_confirm: "Are you sure?" } }, class: "btn btn-danger" %>
+-->
